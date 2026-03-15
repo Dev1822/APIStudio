@@ -8,7 +8,7 @@ export default function App() {
   const [selectedRequest, setSelectedRequest] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3000/")
+    fetch(`${import.meta.env.VITE_API_URL}/`)
       .then(res => res.json())
       .then(data => setRequests(data));
   }, []);

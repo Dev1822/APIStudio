@@ -19,7 +19,7 @@ export default function Sidebar({ requests, setRequests, setSelectedRequest }) {
     e.stopPropagation(); // prevent click selecting the request
 
     try {
-      await fetch(`http://localhost:3000/${id}`, {
+      await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
         method: "DELETE"
       });
 

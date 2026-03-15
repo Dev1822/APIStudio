@@ -72,7 +72,7 @@ export default function RequestPanel({ requests, setRequests, selectedRequest })
 
   const addRequest = () => {
 
-    fetch("http://localhost:3000/", {
+    fetch(`${import.meta.env.VITE_API_URL}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
