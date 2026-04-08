@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function RequestPanel({ requests, setRequests, selectedRequest }) {
+export default function RequestPanel({ requests, setRequests, selectedRequest, deviceId }) {
 
   const [headers, setHeaders] = useState([]);
   const [activeTab, setActiveTab] = useState("headers");
@@ -72,12 +72,14 @@ export default function RequestPanel({ requests, setRequests, selectedRequest })
 
   const addRequest = () => {
 
+    if (!deviceId) return;
+
     fetch(`${import.meta.env.VITE_API_URL}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ ...request, headers })
+      body: JSON.stringify({ ...request, headers, deviceId })
     })
       .then((res) => res.json())
       .then((data) => {

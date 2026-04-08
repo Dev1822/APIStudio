@@ -20,6 +20,10 @@ mongoose.connect(process.env.MONGO_URI)
     })
 
 const APISchema = new mongoose.Schema({
+    deviceId: {
+        type: String,
+        required: true,
+    },
     method: {
         type: String,
         required: true,
@@ -47,7 +51,9 @@ const APIS = mongoose.model("api",APISchema);
 
 app.get('/', async (req, res) => {
     try {
-        const requests = await APIS.find().sort({});
+        const { deviceId } = req.query;
+        if (!deviceId) return res.json([]);
+        const requests = await APIS.find({ deviceId }).sort({});
         res.json(requests);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -56,6 +62,8 @@ app.get('/', async (req, res) => {
 
 app.post('/', async (req, res) => {
     try {
+        const { deviceId } = req.body;
+        if (!deviceId) return res.status(400).json({ message: "deviceId is required" });
         const newRequest = new APIS(req.body);
         const savedRequest = await newRequest.save();
         res.status(201).json(savedRequest);
