@@ -14,7 +14,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="flex h-screen overflow-hidden">
+    <div className="flex flex-col md:flex-row min-h-screen md:h-screen w-full bg-[#0f0f11] md:overflow-hidden">
 
       <Sidebar
         requests={requests}

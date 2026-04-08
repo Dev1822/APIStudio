@@ -87,9 +87,9 @@ export default function RequestPanel({ requests, setRequests, selectedRequest })
   };
 
   return (
-    <div className="flex-1 p-8 bg-[#0f0f11] text-gray-200">
+    <div className="flex-1 p-4 md:p-8 bg-[#0f0f11] text-gray-200 overflow-y-auto">
 
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-4 md:mb-6">
         <h2 className="text-xl font-semibold tracking-wide">New Request</h2>
 
         <button
@@ -100,34 +100,36 @@ export default function RequestPanel({ requests, setRequests, selectedRequest })
         </button>
       </div>
 
-      <div className="flex items-center gap-3 mb-8">
+      <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 mb-6 md:mb-8">
 
-        <select
-          value={request.method}
-          className="bg-[#1a1a1d] border border-gray-700 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-          onChange={(e) =>
-            setRequest((prev) => ({ ...prev, method: e.target.value }))
-          }
-        >
-          <option>GET</option>
-          <option>POST</option>
-          <option>PUT</option>
-          <option>PATCH</option>
-          <option>DELETE</option>
-        </select>
+        <div className="flex flex-1 gap-2">
+          <select
+            value={request.method}
+            className="bg-[#1a1a1d] border border-gray-700 px-3 py-2 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 md:w-auto w-24 shrink-0"
+            onChange={(e) =>
+              setRequest((prev) => ({ ...prev, method: e.target.value }))
+            }
+          >
+            <option>GET</option>
+            <option>POST</option>
+            <option>PUT</option>
+            <option>PATCH</option>
+            <option>DELETE</option>
+          </select>
 
-        <input
-          value={request.url}
-          className="flex-1 bg-[#1a1a1d] border border-gray-700 px-4 py-2 rounded-md text-sm outline-none focus:ring-2 focus:ring-purple-500"
-          placeholder="https://api.example.com/users"
-          onChange={(e) =>
-            setRequest((prev) => ({ ...prev, url: e.target.value }))
-          }
-        />
+          <input
+            value={request.url}
+            className="flex-1 w-full bg-[#1a1a1d] border border-gray-700 px-4 py-2 rounded-md text-sm outline-none focus:ring-2 focus:ring-purple-500 min-w-0"
+            placeholder="https://api.example.com/users"
+            onChange={(e) =>
+              setRequest((prev) => ({ ...prev, url: e.target.value }))
+            }
+          />
+        </div>
 
         <button
           onClick={sendRequest}
-          className="bg-purple-600 hover:bg-purple-700 transition px-6 py-2 rounded-md font-medium"
+          className="bg-purple-600 hover:bg-purple-700 transition px-6 py-2 rounded-md font-medium shrink-0"
         >
           Send
         </button>

@@ -31,15 +31,15 @@ export default function Sidebar({ requests, setRequests, setSelectedRequest }) {
   };
 
   return (
-    <div className="w-72 h-full bg-[#0f0f11] border-r border-gray-800 flex flex-col">
+    <div className="w-full md:w-72 md:h-full bg-[#0f0f11] border-b md:border-b-0 md:border-r border-gray-800 flex flex-col shrink-0">
 
-      <div className="p-5 border-b border-gray-800">
+      <div className="p-4 md:p-5 border-b border-gray-800">
         <h1 className="text-xl font-semibold tracking-wide text-white">
           API Studio
         </h1>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-4 space-y-2">
+      <div className="flex-1 overflow-y-auto p-4 space-y-2 max-h-64 md:max-h-none">
 
         {requests.length === 0 ? (
           <div className="border border-dashed border-gray-700 rounded-lg p-6 text-center text-gray-500 text-sm">
